@@ -20,6 +20,7 @@ import SwiftUI
 // TRY: Change these two colours. Try Color.purple, Color.green or Color.pink.
 let playerOneColor: Color = Color.blue
 let playerTwoColor: Color = Color.orange
+let playerThreeColor: Color = Color.green
 
 // The game itself: what it remembers, what it shows on the screen,
 // and what it does when you click a button.
@@ -33,6 +34,7 @@ struct PigView: View {
     // The points each player has banked. Banked points are safe.
     @State var playerOneScore: Int = 0
     @State var playerTwoScore: Int = 0
+    @State var playerThreeScore: Int = 0
 
     // The points collected so far on this turn.
     // They are not safe until the player clicks Hold.
@@ -90,6 +92,18 @@ struct PigView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(playerTwoColor.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                
+                VStack {
+                    Text("Player 3")
+                        .font(.headline)
+                    Text("\(playerThreeScore)")
+                        .font(.system(size: 48, weight: .bold))
+                        .monospacedDigit()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(playerThreeColor.opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
 
@@ -179,6 +193,8 @@ struct PigView: View {
             playerOneScore += turnTotal
         } else {
             playerTwoScore += turnTotal
+        } else {
+            playerThreeScore += turnTotal
         }
         message = "Player \(currentPlayer) banked \(turnTotal) points."
         turnTotal = 0
@@ -196,6 +212,8 @@ struct PigView: View {
             turnColor = playerOneColor
         } else {
             turnColor = playerTwoColor
+        } else {
+            turnColor = playerThreeColor
         }
     }
 
@@ -203,6 +221,7 @@ struct PigView: View {
     func startNewGame() {
         playerOneScore = 0
         playerTwoScore = 0
+        playerThreeScore = 0
         turnTotal = 0
         currentPlayer = 1
         turnColor = playerOneColor
