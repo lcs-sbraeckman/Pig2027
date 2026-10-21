@@ -9,9 +9,8 @@
 //  Roll a 1 and you lose your turn total, and your turn is over.
 //  Click Hold to bank your turn total into your score and end your turn.
 //
-//  WHAT IT DOES NOT DO YET
-//  Nobody can win! The scores just keep going up.
-//  In the real game, the first player to reach 100 points wins.
+//  NEW IN LESSON 5
+//  The first player to bank 100 points or more wins.
 //
 
 import SwiftUI
@@ -21,6 +20,9 @@ import SwiftUI
 let playerOneColor: Color = Color.blue
 let playerTwoColor: Color = Color.orange
 let playerThreeColor: Color = Color.green
+
+// The first player to reach this score wins.
+let winningScore: Int = 100
 
 // The game itself: what it remembers, what it shows on the screen,
 // and what it does when you click a button.
@@ -54,6 +56,9 @@ struct PigView: View {
 
     // A message that tells the players what just happened.
     @State var message: String = "Player 1 goes first. Click Roll to start."
+    
+    // Becomes true when somebody wins.
+    @State var gameIsOver: Bool = false
 
     // MARK: - Computed properties
 
@@ -109,11 +114,18 @@ struct PigView: View {
 
             Spacer()
 
-            // Whose turn is it?
-            Text("Player \(currentPlayer), your turn")
-                .font(.title)
-                .bold()
-                .foregroundStyle(turnColor)
+            // Say whose turn it is, or that the game is over.
+            if !gameIsOver {
+                Text("Player \(currentPlayer), your turn")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(turnColor)
+            } else {
+                Text("Game over")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(turnColor)
+            }
 
             // The die.
             // TRY: Change the size of the die from 120 to something bigger or smaller.
@@ -151,9 +163,12 @@ struct PigView: View {
             .bold()
             .controlSize(.large)
             .tint(turnColor)
+            // Nobody can roll or hold once the game is over.
+                       .disabled(gameIsOver)
 
             Button("New Game") {
                 startNewGame()
+                gameIsOver = false
             }
         }
         .padding(32)
@@ -193,12 +208,21 @@ struct PigView: View {
             playerOneScore += turnTotal
         } else {
             playerTwoScore += turnTotal
-        } else {
-            playerThreeScore += turnTotal
         }
-        message = "Player \(currentPlayer) banked \(turnTotal) points."
-        turnTotal = 0
-        switchPlayer()
+ 
+        // Has either player reached the winning score?
+        let someoneHasWon: Bool = playerOneScore >= winningScore || playerTwoScore >= winningScore
+ 
+        if someoneHasWon {
+            message = "Player \(currentPlayer) wins! Click New Game to play again."
+            dieSymbol = "trophy.fill"
+            turnTotal = 0
+            gameIsOver = true
+        } else {
+            message = "Player \(currentPlayer) banked \(turnTotal) points."
+            turnTotal = 0
+            switchPlayer()
+        }
     }
 
     // Passes the turn to the other player.
@@ -212,8 +236,7 @@ struct PigView: View {
             turnColor = playerOneColor
         } else {
             turnColor = playerTwoColor
-        } else {
-            turnColor = playerThreeColor
+
         }
     }
 
