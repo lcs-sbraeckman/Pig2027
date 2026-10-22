@@ -1,6 +1,6 @@
 #  Pig
  
-You against the computer. Click a move, and the computer picks one at random.
+You against two fellow opponent. Roll the die, and decide to bank the points or roll again for a chance to gain even more. Watch out to not roll a 1 or two 6s in a roll, or else your turn ends, and you bank nothing.
  
 ## How to play
  

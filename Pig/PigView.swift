@@ -59,6 +59,8 @@ struct PigView: View {
     
     // Becomes true when somebody wins.
     @State var gameIsOver: Bool = false
+    
+    @State var lastRoll: Int = 0
 
     // MARK: - Computed properties
 
@@ -206,12 +208,14 @@ struct PigView: View {
     func hold() {
         if currentPlayer == 1 {
             playerOneScore += turnTotal
-        } else {
+        } else if currentPlayer == 2 {
             playerTwoScore += turnTotal
+        } else {
+            playerThreeScore += turnTotal
         }
  
         // Has either player reached the winning score?
-        let someoneHasWon: Bool = playerOneScore >= winningScore || playerTwoScore >= winningScore
+        let someoneHasWon: Bool = playerOneScore >= winningScore || playerTwoScore >= winningScore || playerThreeScore >= winningScore
  
         if someoneHasWon {
             message = "Player \(currentPlayer) wins! Click New Game to play again."
@@ -229,13 +233,15 @@ struct PigView: View {
     func switchPlayer() {
         rollsThisTurn = 0
  
-        // The remainder does the switching: 1 becomes 2, and 2 becomes 1.
-        currentPlayer = currentPlayer % 2 + 1
+        // The remainder does the switching: 1 becomes 2, 2 becomes 3, 3 becomes 1
+        currentPlayer = currentPlayer % 3 + 1
  
         if currentPlayer == 1 {
             turnColor = playerOneColor
-        } else {
+        } else if currentPlayer == 2 {
             turnColor = playerTwoColor
+        } else {
+            turnColor = playerThreeColor
 
         }
     }
