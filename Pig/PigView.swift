@@ -184,8 +184,10 @@ struct PigView: View {
     // Picks a random whole number from 1 to 6, just like a real die.
     func rollOneDie() -> Int {
         let roll: Int = Int.random(in: 1...6)
+
         return roll
     }
+    
      
     // Answers true when a score is high enough to win.
     func hasWon(score: Int) -> Bool {
@@ -197,13 +199,17 @@ struct PigView: View {
 
         // Pick a random whole number from 1 to 6, just like a real die.
         let roll: Int = rollOneDie()
-            rollsThisTurn += 1
+        rollsThisTurn += 1
         // Show the matching die face. For a roll of 4, the symbol is "die.face.4.fill".
         dieSymbol = "die.face.\(roll).fill"
 
         if roll == 1 {
             // A 1 wipes out the turn total and ends the turn.
             message = "Oh no, a 1! Player \(currentPlayer) loses \(turnTotal) points."
+            turnTotal = 0
+            switchPlayer()
+        } else if roll == 6 && lastRoll == 6 {
+            message = "Oh no, another 6! Player \(currentPlayer) loses \(turnTotal) points"
             turnTotal = 0
             switchPlayer()
         } else {
