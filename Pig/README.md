@@ -26,7 +26,7 @@ You against two fellow opponent.
   - Added a line of code at the bottom of the *rollDie* function, so that at the end of a roll, that roll is then stored into the *lastRoll* variable
 
 ### One Design Choice
-- I decided to 
+- I decided to add three different levels/game lengths to pig: a short game, where the winning score is 50, a normal game, with the typical 100 winning score, and a long game, where 200 points wins. I added this to give the player more options, and so that they can play pig whenever they want; if they are in a rush and can only play for a little while, or if they have time and want to relax with friends! With the added challenge of two 6s, it can make games longer, and may make players who like to roll over and over again want to select a lower winning score to improve their odds. With an added third player, odds of winning decrease, which is when a higher winning score may be wanted to keep the game going. 
 
 
 ## Testing
@@ -38,8 +38,11 @@ You against two fellow opponent.
 | Rolling two 6s ends your turn | Die rolls 6 | After rolling twice, the turn should be passed to the next player and banks no points | After two rolls of 6, the turn was passed | 
 | Rolling neither a 1 nor two 6s ends your turn  | Die rolls 3 | The player can roll as many times as they want without losing points or the turn, and only ends when they press hold  | The player rolled as many time as they wanted without losing (The new two 6s rule did not break the game and works as it should) | 
 | Rolling a 1 ends your turn | Die rolls 1 | The turn should end instantly, with no points banked, as soon as they roll| The turn ended instantly (The rolling a 1 rule still works)|
-| Short game has a winning score of 50| Die rolls 5| After banking 50 total points, the game ends| The game ended|
-| Short game has a winning score of 50| Die rolls 5 | After banking less than 50 total points, the game does not end | The game did not end|
+| Short game has a winning score of 50 (No more, no less)| Die rolls 5| After player 1 banking 50 total points, the game ends and player 1 wins| The game ended and player 1 won|
+| Short game has a winning score of 50| Die rolls 5 | After banking 45 total points, the game does not end | The game did not end and the turn was passed to the next player|
+| Long game has a winning score of 200 (No more, no less)| Die rolls 5 | After banking 195 total points, the game does not end and the turn is passed to the next player | The game did not end and the turn was passed to the next player |
+| Long game has a winning score of 200 | Die rolls 5 | After player 1 banking 205 points, the game ends and player 1 wins| The game ended and player 1 won |
+| Game length buttons are disabled after selecting one (No cheaters!) | |N| |
 ## Credits
 - The starting game was written by Mr. Gordon.
-- The third player, colour scheme, and two 6s rule was written by Sam
+- The third player, colour scheme, two 6s rule and three different game lengths were written by Sam

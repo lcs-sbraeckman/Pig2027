@@ -62,7 +62,7 @@ struct PigView: View {
     
     @State var winningScore: Int = 0
     
-    @State var winningScoreMessage: String = "Want to make the game shoter, or longer?"
+    @State var winningScoreMessage: String = "Select a game length!"
     
     // MARK: - Computed properties
     
@@ -120,9 +120,10 @@ struct PigView: View {
             
             Text(winningScoreMessage)
                 .font(.title)
-                .foregroundStyle(Color.secondary)
+                .foregroundStyle(Color.primary)
                 .multilineTextAlignment(.center)
                 .frame(minHeight: 24)
+                .bold()
             
             HStack(spacing: 12) {
                 Button("Short Game" , systemImage: "book.pages") {
@@ -150,11 +151,12 @@ struct PigView: View {
                 .disabled(winningScore != 0)
     
             // Say whose turn it is, or that the game is over.
-            if !gameIsOver {
+            if !gameIsOver && winningScore != 0 {
                 Text("Player \(currentPlayer), your turn")
                     .font(.title)
-                    .bold()
                     .foregroundStyle(turnColor)
+            } else if winningScore == 0 {
+                Text("")
             } else {
                 Text("Game over")
                     .font(.title)
@@ -314,6 +316,7 @@ struct PigView: View {
         winningScore = 0
         dieSymbol = "questionmark.square.fill"
         message = "Player 1 goes first. Click Roll to start."
+        winningScoreMessage = "Select a game length!"
     }
 }
 
