@@ -1,14 +1,15 @@
 #  Pig
- 
-You against two fellow opponent.  
+ You against three fellow opponent, a die, and the chance to test your luck!
 ## How to play
  
-1. Player 1 is first to roll the die!
-2. Either decide to Hold, banking the number of points shown on the die to your total and passing the turn to the next player, or; 
-3. Roll again for a chance to add those points to the next roll! You can roll again as many times as you want!
-4. **B********U********T**: Be careful when rolling again. Rolling a 1 and/or two consecutive 6s will instantly end your turn, passing it to the next player and banking you NO points!
-5. The turns, when passed, are given to Player 1, then 2, then 3, and cycle again.
-6. The first player to 100 points wins!
+1. First, select a game length: a Short Game, where the winning score is 50 total points, a Normal Game where the winning score is 100 points, or a Long Game where the winning score is 200!
+2. After selecting a length, Player 1 is first to roll the die!
+3. The player can either decide to Hold, banking the number of points shown on the die to your total and passing the turn to the next player, or; 
+4. Roll again for a chance to add those points to the next roll! You can roll again as many times as you want!
+5. **B********U********T**: Be careful when rolling again. Rolling a 1 and/or two consecutive 6s will instantly end your turn, passing it to the next player and banking you NO points!
+6. The turns, when passed, are given to Player 1, then 2, then 3, and cycle again.
+7. The first player to 100 points wins!
+8. \*To play again, select New Game, and everything resets!
 
  
 ## What I added
@@ -24,13 +25,18 @@ You against two fellow opponent.
   - Defined an *@State **var* statement for *lastRoll*, so that the previous roll has somewhere to go and be stored;  
   - Put the rule itself into writing in the *rollDie* function, so that previously rolling a 6 and rolling another 6 ends your turn with no points, by using &&
   - Added a line of code at the bottom of the *rollDie* function, so that at the end of a roll, that roll is then stored into the *lastRoll* variable
+- I added three new buttons: Short Game (Where winningScore = 50), Normal Game (winningScore = 100) and Long Game (winningScore = 200). To do this I;
+  - Made winningScore an @State variable instead of a let Statement and have the original value be 0;
+  - Created three new buttons, with similar code to the "New Game" button, and gave each one their own unique SF Symbol;
+  - Created an @State variable called winningScoreMessage to make it more clear to the player that they need to select a game length/which winningScore they have selected;
+  - Disabled Roll/Hold buttons until after a winningScore is selected that is not 0
+  - Disabled the new game length buttons after a winningScore is selected when the winningScore no longer equates to 0
 
 ### One Design Choice
 - I decided to add three different levels/game lengths to pig: a short game, where the winning score is 50, a normal game, with the typical 100 winning score, and a long game, where 200 points wins. I added this to give the player more options, and so that they can play pig whenever they want; if they are in a rush and can only play for a little while, or if they have time and want to relax with friends! With the added challenge of two 6s, it can make games longer, and may make players who like to roll over and over again want to select a lower winning score to improve their odds. With an added third player, odds of winning decrease, which is when a higher winning score may be wanted to keep the game going. 
 
 
 ## Testing
-
 | Test                        | Chosen input | Should happen |  Did happen  |
 | --- | --- | --- | --- | --- |
 |  Player 3 gets possesion of the die |  Die rolls 3 |  The die, roll and hold buttons should be colour coded indigo, player 3's assigned colour  | Game was colour coded indigo |
@@ -42,7 +48,7 @@ You against two fellow opponent.
 | Short game has a winning score of 50| Die rolls 5 | After banking 45 total points, the game does not end | The game did not end and the turn was passed to the next player|
 | Long game has a winning score of 200 (No more, no less)| Die rolls 5 | After banking 195 total points, the game does not end and the turn is passed to the next player | The game did not end and the turn was passed to the next player |
 | Long game has a winning score of 200 | Die rolls 5 | After player 1 banking 205 points, the game ends and player 1 wins| The game ended and player 1 won |
-| Game length buttons are disabled after selecting one (No cheaters!) | |N| |
+| Game length buttons are disabled after selecting one (No cheaters!) | N/A | After selecting "Short Game," the buttons should no longer be clickable| The buttons were disabled |
 ## Credits
 - The starting game was written by Mr. Gordon.
 - The third player, colour scheme, two 6s rule and three different game lengths were written by Sam
