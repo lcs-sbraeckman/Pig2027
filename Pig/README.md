@@ -19,17 +19,17 @@
   - Defined an *@State var* statement for *playerThreeScore*, allowing for a third score total;
   - Defined a *let *statement for *playerThreeColor*, giving the third player their own unique colour code;
   - Copied the *VStack*s from player 1/2 for a player 3 display showing their name and game total, colour coded appropriately;
-  - Editied the *hold* function to *else if* for player 2 and *else* for player 3, along with copying the code adding the turn total to the player total, letting player 3 be able to bank points;
+  - Edited the *hold* function to *else if* for player 2 and *else* for player 3, along with copying the code adding the turn total to the player total, letting player 3 be able to bank points;
   - Edited the *switchPlayer* function, once again adding *else if* for player 2 and *else* for player 3, changing the colour displayed, and changed the remainder calculation to *% 3 + 1*, letting the game switch to player 3 after player 2.
 - I added a new rule: if you roll two 6s in a roll your turn instantly, ends, similar to rolling a 1. To do this, I;
   - Defined an *@State **var* statement for *lastRoll*, so that the previous roll has somewhere to go and be stored;  
-  - Put the rule itself into writing in the *rollDie* function, so that previously rolling a 6 and rolling another 6 ends your turn with no points, by using &&
+  - Put the rule itself into writing in the *rollDie* function, so that previously rolling a 6 and rolling another 6 ends your turn with no points, by using "&&"
   - Added a line of code at the bottom of the *rollDie* function, so that at the end of a roll, that roll is then stored into the *lastRoll* variable
 - I added three new buttons: Short Game (Where winningScore = 50), Normal Game (winningScore = 100) and Long Game (winningScore = 200). To do this I;
   - Made winningScore an @State variable instead of a let Statement and have the original value be 0;
   - Created three new buttons, with similar code to the "New Game" button, and gave each one their own unique SF Symbol;
   - Created an @State variable called winningScoreMessage to make it more clear to the player that they need to select a game length/which winningScore they have selected;
-  - Disabled Roll/Hold buttons until after a winningScore is selected that is not 0
+  - Disabled Roll/Hold buttons until after a winningScore is selected that is not 0, using "!"
   - Disabled the new game length buttons after a winningScore is selected when the winningScore no longer equates to 0
 
 ### One Design Choice

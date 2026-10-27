@@ -4,12 +4,12 @@
 //
 //  WHAT THIS GAME DOES NOW
 //  Pig is a dice game for three players who share one laptop.
+//  Choose between three game lengths.
 //  On your turn, roll the die as many times as you like.
 //  Each roll adds to your turn total.
 //  Roll a 1 or two consecutive 6s and you lose your turn total, and your turn is over.
 //  Click Hold to bank your turn total into your score and end your turn.
 //  The first player to bank 100 points or more wins.
-//
 
 import SwiftUI
 
@@ -58,11 +58,14 @@ struct PigView: View {
     // Becomes true when somebody wins.
     @State var gameIsOver: Bool = false
     
+    // In case a player rolls another 6, the computer will remeber the previous roll.
     @State var lastRoll: Int = 0
     
+    // The winning score changes depending on the game length selected.
     @State var winningScore: Int = 0
     
-    @State var winningScoreMessage: String = "Select a game length!"
+    // A message that changes based on the game length selected
+    @State var winningScoreMessage: String = "Select a game length"
     
     // MARK: - Computed properties
     
@@ -125,6 +128,7 @@ struct PigView: View {
                 .frame(minHeight: 24)
                 .bold()
             
+            // Buttons to change the winning score that must be pressed before the first roll
             HStack(spacing: 12) {
                 Button("Short Game" , systemImage: "book.pages") {
                     winningScore = 50
@@ -150,7 +154,7 @@ struct PigView: View {
             }
                 .disabled(winningScore != 0)
     
-            // Say whose turn it is, or that the game is over.
+            // Say whose turn it is, that the game is over, or nothing if a game length has not been selected.
             if !gameIsOver && winningScore != 0 {
                 Text("Player \(currentPlayer), your turn")
                     .font(.title)
@@ -203,7 +207,7 @@ struct PigView: View {
             .disabled(gameIsOver)
             .disabled(winningScore == 0)
             
-            Button("New Game") {
+            Button("New Game" , systemImage:"arrow.counterclockwise") {
                 startNewGame()
                 gameIsOver = false
             }
