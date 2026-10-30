@@ -9,12 +9,12 @@
 //  Each roll adds to your turn total.
 //  Roll a 1 or two consecutive 6s and you lose your turn total, and your turn is over.
 //  Click Hold to bank your turn total into your score and end your turn.
-//  The first player to bank 100 points or more wins.
+//  The first player to reach the selected winning score wins.
 
 import SwiftUI
 
 // Each player has their own colour.
-// TRY: Change these two colours. Try Color.purple, Color.green or Color.pink.
+// TRY: Change these three colours. Try Color.purple, Color.green or Color.red.
 let playerOneColor: Color = Color.pink
 let playerTwoColor: Color = Color.green
 let playerThreeColor: Color = Color.teal
@@ -38,7 +38,7 @@ struct PigView: View {
     // They are not safe until the player clicks Hold.
     @State var turnTotal: Int = 0
     
-    // Whose turn it is: 1 or 2.
+    // Whose turn it is: 1, 2 or 3.
     @State var currentPlayer: Int = 1
     
     // The colour of whoever's turn it is.
@@ -62,7 +62,7 @@ struct PigView: View {
     // The winning score changes depending on the game length selected.
     @State var winningScore: Int = 0
     
-    // A message that changes based on the game length selected
+    // A message that changes based on the game length selected.
     @State var winningScoreMessage: String = "Select a game length"
     
     // MARK: - Computed properties
@@ -274,7 +274,7 @@ struct PigView: View {
             playerThreeScore += turnTotal
         }
         
-        // Has either player reached the winning score?
+        // Has any player reached the winning score?
         let someoneHasWon: Bool = hasWon(score: playerOneScore) || hasWon(score: playerTwoScore) || hasWon(score: playerThreeScore)
         
         if someoneHasWon {
@@ -289,7 +289,7 @@ struct PigView: View {
         }
     }
     
-    // Passes the turn to the other player.
+    // Passes the turn to the next player.
     func switchPlayer() {
         rollsThisTurn = 0
         
