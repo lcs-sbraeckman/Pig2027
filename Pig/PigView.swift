@@ -19,8 +19,6 @@ let playerOneColor: Color = Color.pink
 let playerTwoColor: Color = Color.green
 let playerThreeColor: Color = Color.teal
 
-// The first player to reach this score wins.
-let winningScore: Int = 100
 
 // The game itself: what it remembers, what it shows on the screen,
 // and what it does when you click a button.
