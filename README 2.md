@@ -53,10 +53,14 @@
 | Normal game has a winning score of 100 (No less)| Die rolls 5 | After Player 1 banking 95 points, the game does not end and the turn is passed to Player 2 | Player 1 banked 95 points to their total, and the turn was passed to Player 2 |
 | Normal game has a winning score of 100 (Rolling over still ends the game) | Die rolls 5 | After Player 1 banks 105 points, the game still ends and Player 1 is displayed as the winner | The game ended and Player 1 won |
 | Game length buttons are disabled after selecting one (No cheaters!) | N/A | After selecting "Short Game," the buttons should no longer be clickable| The buttons were disabled |
-| Removing the old winningScore constant the game can still end with the new winningScore variable | Die rolls 5 | When selecting short game, the game should end when a player banks 50 points | The game ended and player 1, who banked 50 points, won |
+| By removing the old winningScore constant the game can still end with the new winningScore variable | Die rolls 5 | When selecting short game, the game should end when a player banks 50 points | The game ended and player 1, who banked 50 points, won |
 | A player rolls a 6 after the previous player rolls a 6 | Die rolls 6 | The next player's turn would end after rolling just one 6 because there is not code that resets lastRoll for a new player | Player 1's turn ended after rolling twice (Two 6s), Player 2's ended after rolling once, then Player 3's turn ended after rolling once; the next step is to add code where lastRoll resets after a turn ends |
+| Player 2 rolls a 6 after the previous player rolls a 6 | Die rolls 6 | The turn should not end and Player 2 can roll again because of the new code added to reset lastRoll | Player 2's turn did not end and was able to roll again |
+| Player 2 rolls two 6s after the previous player rolled a 6 | Die rolls 6 | The turn should end and be passed to Player 3 | Player 2's turn ended and was passed to Player 3|
+| Player 1 rolls a 6 in a new game after the previous game ended with the last roll being a 6 | Die rolls 6 | After pressing "New Game" when the previous player rolled 6, and rolling, the turn should not end and Player 1 can roll again | Player 1's turn did not end |
+| Player 1 rolls two 6s in a row in a new game after the previous game ended with the last roll being a 6 | Die rolls 6 | After rolling two 6s in the new game, Player 1's turn should end and be passed to Player 2 | Player 1's turn ended and was passed to Player 2 |
 ## Credits
 - The starting game was written by Mr. Gordon.
 - The third player, colour scheme, two 6s rule and three different game lengths were written by Sam
 - Collaborated with Charlotte on how to pass the turn to Player 3 with the remainder
-- \*No AI was used
+- \*I used no AI or website for other help

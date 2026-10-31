@@ -132,26 +132,22 @@ struct PigView: View {
                     winningScore = 50
                     winningScoreMessage = "Short: First player to 50 wins!"
                 }
-                
                 .buttonStyle(.bordered)
-                
                 
                 Button("Normal Game" , systemImage: "book.closed") {
                     winningScore = 100
                     winningScoreMessage = "Normal: First player to 100 wins!"
                 }
-                
                 .buttonStyle(.bordered)
                 
                 Button("Long Game" , systemImage: "books.vertical") {
                     winningScore = 200
                     winningScoreMessage = "Long: First player to 200 wins!"
                 }
-                
                 .buttonStyle(.bordered)
             }
-                .disabled(winningScore != 0)
-    
+            .disabled(winningScore != 0)
+            
             // Say whose turn it is, that the game is over, or nothing if a game length has not been selected.
             if !gameIsOver && winningScore != 0 {
                 Text("Player \(currentPlayer), your turn")
@@ -210,20 +206,20 @@ struct PigView: View {
                 gameIsOver = false
             }
             
-  
+            
             
         }
         .padding(32)
         .fontDesign(.rounded)
         // How big the game's window is on the Mac. It can be made taller or wider.
         .frame(minWidth: 480, minHeight: 680)
-
+        
     }
     // MARK: - Functions
     
     // Picks a random whole number from 1 to 6, just like a real die.
     func rollOneDie() -> Int {
-        let roll: Int = Int.random(in: 1...6)
+        let roll: Int = 6
         return roll
     }
     
@@ -259,9 +255,10 @@ struct PigView: View {
             turnTotal += roll
             // TRY: Change this message.
             message = "You rolled a \(roll). Roll again, or hold?"
+            lastRoll = roll
         }
         // Remeber the last roll
-        lastRoll = roll
+        
     }
     
     // Banks the turn total into the current player's score, then ends the turn.
@@ -304,6 +301,7 @@ struct PigView: View {
             turnColor = playerThreeColor
             
         }
+        lastRoll = 0
     }
     
     // Sets everything back to the way it was at the start.
@@ -316,6 +314,7 @@ struct PigView: View {
         turnColor = playerOneColor
         rollsThisTurn = 0
         winningScore = 0
+        lastRoll = 0
         dieSymbol = "questionmark.square.fill"
         message = "Player 1 goes first. Click Roll to start."
         winningScoreMessage = "Select a game length!"
