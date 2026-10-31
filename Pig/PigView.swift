@@ -203,7 +203,6 @@ struct PigView: View {
             
             Button("New Game" , systemImage:"arrow.counterclockwise") {
                 startNewGame()
-                gameIsOver = false
             }
             
             
@@ -219,7 +218,7 @@ struct PigView: View {
     
     // Picks a random whole number from 1 to 6, just like a real die.
     func rollOneDie() -> Int {
-        let roll: Int = 6
+        let roll: Int = Int.random(in: 1...6)
         return roll
     }
     
@@ -306,6 +305,7 @@ struct PigView: View {
     
     // Sets everything back to the way it was at the start.
     func startNewGame() {
+        gameIsOver = false
         playerOneScore = 0
         playerTwoScore = 0
         playerThreeScore = 0
